@@ -1,0 +1,9 @@
+# core.autocrlf=true would otherwise check notebooks out with CRLF, and any tool that rewrites
+# the JSON then produces a whole-file diff. Keep notebooks and text sources on LF.
+*.ipynb text eol=lf
+*.py    text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+
+# Notebooks are JSON: show them as text in diffs, but do not try to merge them line by line.
+*.ipynb -merge

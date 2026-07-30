@@ -1,0 +1,16 @@
+# Tested on Python 3.12.9 with the exact versions below.
+# Loosen the pins if you prefer; nothing here relies on a version-specific API.
+
+aequilibrae==1.6.2
+numpy==2.5.1
+pandas==3.0.3
+geopandas==1.1.4
+shapely==2.1.2
+folium==0.20.0
+
+# Spatial index used by AequilibraE's standalone (non-QGIS) code path. Cell A0 declares it
+# available, so it must be installed even though nothing imports it directly.
+rtree==1.4.1
+
+# Only needed to run the notebook itself.
+ipykernel==7.3.0

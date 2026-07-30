@@ -1,0 +1,29 @@
+# The notebook regenerates everything below from scratch, so none of it is tracked.
+# The directories themselves ARE tracked (via .gitkeep): cell A1 locates the repo root by
+# testing for `outputs/`, so that directory must exist in a fresh clone.
+
+# AequilibraE project: SQLite databases, OSM extract, parameters, logs
+data/*
+!data/.gitkeep
+
+# Interactive HTML maps written by the notebook (9-19 MB each)
+outputs/*
+!outputs/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
