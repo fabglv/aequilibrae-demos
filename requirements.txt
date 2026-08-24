@@ -12,5 +12,9 @@ folium==0.20.0
 # available, so it must be installed even though nothing imports it directly.
 rtree==1.4.1
 
+# Undirected shortest paths on the street network, for the walking transfers in B2. Already a
+# transitive dependency of geopandas; pinned here because the notebook imports it directly.
+scipy==1.18.0
+
 # Only needed to run the notebook itself.
 ipykernel==7.3.0
