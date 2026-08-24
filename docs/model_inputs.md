@@ -1,8 +1,12 @@
 # Model inputs
 
 Everything the transit model needs, split into **what you must supply** and **what has a
-default you can improve on**. Figures in the "demo" column come from
-`notebooks/quito_transit_v2.ipynb`.
+default you can improve on**.
+
+> Figures in the "demo" column describe `notebooks/quito_public_transit_demo.ipynb` as of
+> commit `692df9a` (2026-08-24). They move when the model does — and a couple move on their
+> own: cell A2 downloads from OpenStreetMap live, so the zone count drifts by one or two
+> between runs as a cell near the `MIN_ROAD_KM` threshold flips.
 
 ---
 
