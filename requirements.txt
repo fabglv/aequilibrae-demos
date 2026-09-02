@@ -16,5 +16,12 @@ rtree==1.4.1
 # transitive dependency of geopandas; pinned here because the notebook imports it directly.
 scipy==1.18.0
 
+# Reads the .xlsx population projections in the TAZ notebook (pandas needs it for Excel).
+openpyxl==3.1.5
+
+# Contiguity-constrained clustering, used in the TAZ notebook to split oversized zones into
+# compact pieces that only ever group neighbouring sectors.
+scikit-learn==1.9.0
+
 # Only needed to run the notebook itself.
 ipykernel==7.3.0
