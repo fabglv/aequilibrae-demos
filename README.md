@@ -35,12 +35,27 @@ Requires **Python 3.12** and an internet connection for the OSM download.
 pip install -r requirements.txt
 jupyter lab notebooks/quito_scenarios_demo.ipynb        # road
 jupyter lab notebooks/quito_public_transit_demo.ipynb   # transit
+jupyter lab notebooks/TAZ_OD_demo.ipynb                 # zones and O-D matrix
 ```
 
 Run the cells in order — a few minutes each, most of it the download in cell A2.
 
-`data/` (the AequilibraE SQLite projects) and `outputs/` (the interactive HTML maps) are committed
-empty and regenerated from scratch on every run, so neither is tracked by git.
+`data/` and `outputs/` are committed empty and neither is tracked by git. The AequilibraE
+projects and the HTML maps regenerate on every run, and the road network downloads once and is
+then cached in `data/road_network/`.
+
+**`TAZ_OD_demo.ipynb` needs data this repository does not carry.** It is official DMQ material, not
+something the notebook can download. Put it in `data/gov_data/`:
+
+| what | where it goes |
+|---|---|
+| census sectors | `sector_censal_2022_inec_q/sector_anonimizado_a.shp` |
+| barrio layer | `BARRIO_REF/BARRIO_REF.shp` |
+| population projections | `03_Resultados_proyeccion2023_2035.xlsx` |
+| land-use plan | `ba003_uso_suelo_edificabilidad_a/ba003_uso_suelo_edificabilidad_a.shp` |
+| cadastre | `BLOQUE_CONSTRUCTIVO/BLOQUE_CONSTRUCTIVO/catastro.gdb` |
+
+Each is checked where it is first read, and the error names the path that is missing.
 
 ## Reading the maps
 
