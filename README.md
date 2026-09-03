@@ -40,9 +40,11 @@ jupyter lab notebooks/TAZ_OD_demo.ipynb                 # zones and O-D matrix
 
 Run the cells in order — a few minutes each, most of it the download in cell A2.
 
-`data/` and `outputs/` are committed empty and neither is tracked by git. The AequilibraE
-projects and the HTML maps regenerate on every run, and the road network downloads once and is
-then cached in `data/road_network/`.
+`data/` and `outputs/` are committed empty and almost nothing in them is tracked. The
+AequilibraE projects and the HTML maps regenerate on every run, and the road network downloads
+once and is then cached in `data/road_network/`.
+
+The exception is `outputs/taz_od_exports/`, which **is** tracked — see below.
 
 **`TAZ_OD_demo.ipynb` needs data this repository does not carry.** It is official DMQ material, not
 something the notebook can download. Put it in `data/gov_data/`:
@@ -56,6 +58,23 @@ something the notebook can download. Put it in `data/gov_data/`:
 | cadastre | `BLOQUE_CONSTRUCTIVO/BLOQUE_CONSTRUCTIVO/catastro.gdb` |
 
 Each is checked where it is first read, and the error names the path that is missing.
+
+## What `TAZ_OD_demo.ipynb` leaves behind
+
+A clone has no `data/gov_data/`, so it cannot rebuild the zones. The notebook's last section
+therefore writes its results to `outputs/taz_od_exports/`, and those files are committed:
+
+| file | size | what it holds |
+|---|---|---|
+| `zones.gpkg` | 4.8 MB | the zones: boundaries, population, floor area by class, trips produced and attracted |
+| `od_matrix.csv.gz` | 3.1 MB | the O-D matrix, one row per zone pair that carries trips |
+| `od_matrix.omx` | 4.1 MB | the same matrix, square, in the format AequilibraE reads back |
+| `link_volumes.gpkg` | 12.1 MB | every street the assignment loaded, with flow, V/C and congested time |
+| `assumptions.csv` | 5 KB | every number the model assumes rather than measures |
+
+They open in QGIS or pandas without AequilibraE. The SQLite project under `data/` is not tracked
+and would not help if it were — every matrix in the notebook is `memory_only`, so the databases
+hold the network and the zones but none of the results.
 
 ## Reading the maps
 

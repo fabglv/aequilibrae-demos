@@ -7,3 +7,8 @@
 
 # Notebooks are JSON: show them as text in diffs, but do not try to merge them line by line.
 *.ipynb -merge
+
+# The notebook's exports. Declared binary so core.autocrlf never rewrites bytes inside them.
+*.gpkg  binary
+*.omx   binary
+*.gz    binary

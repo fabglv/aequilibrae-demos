@@ -10,6 +10,10 @@ data/*
 outputs/*
 !outputs/.gitkeep
 
+# The exception: the notebook's exported results ARE tracked. A clone has no data/gov_data/, so
+# it cannot regenerate them, and the SQLite project they come from holds no results at all.
+!outputs/taz_od_exports/
+
 # Jupyter
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
