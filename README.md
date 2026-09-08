@@ -36,6 +36,7 @@ pip install -r requirements.txt
 jupyter lab notebooks/quito_scenarios_demo.ipynb        # road
 jupyter lab notebooks/quito_public_transit_demo.ipynb   # transit
 jupyter lab notebooks/TAZ_OD_demo.ipynb                 # zones and O-D matrix
+jupyter lab notebooks/time_of_day_demo.ipynb            # four hours of the day
 ```
 
 Run the cells in order — a few minutes each, most of it the download in cell A2.
@@ -75,6 +76,25 @@ therefore writes its results to `outputs/taz_od_exports/`, and those files are c
 They open in QGIS or pandas without AequilibraE. The SQLite project under `data/` is not tracked
 and would not help if it were — every matrix in the notebook is `memory_only`, so the databases
 hold the network and the zones but none of the results.
+
+## Time of day — `notebooks/time_of_day_demo.ipynb`
+
+Four one-hour assignments — morning peak, midday, evening peak, night — on the same network and
+zones. The road model assigns the morning peak alone.
+
+**It needs no `data/gov_data/`.** It reads the committed exports listed above plus
+`data/road_model/`, so a clone can run it: about seven minutes, most of it the four assignments.
+The morning peak reproduces the road model's result exactly, which is the check that the exports
+carry what they claim.
+
+Because productions come from population and attractions from floor area, the matrix already runs
+one way — home to activity. So an hour is a transform of it plus a scale rather than a second
+gravity model: the evening peak is the transpose, midday and night the average of the two. That is
+the standard way to split a day, taken to its extreme because Quito has no household travel
+survey to set the direction split. The notebook says so, and lists what it cannot capture.
+
+Each hour's link flows are saved to its own table in the working model's results database, and
+`outputs/time_of_day_maps/` gets a switcher across all four plus one detailed map per hour.
 
 ## Reading the maps
 
