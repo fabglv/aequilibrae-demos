@@ -14,6 +14,11 @@ outputs/*
 # it cannot regenerate them, and the SQLite project they come from holds no results at all.
 !outputs/taz_od_exports/
 
+# The weekday and weekend-day matrices, tracked for the same reason: they come from
+# data/road_model/, which a clone does not have.
+!outputs/weekday_exports/
+!outputs/weekend_gravity_exports/
+
 # Jupyter
 .ipynb_checkpoints/
 */.ipynb_checkpoints/

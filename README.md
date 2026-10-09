@@ -106,7 +106,8 @@ averaged and scaled to the day's traffic: symmetric, because every trip out has 
 assigned against capacity multiplied by `F = 1 / busiest-hour share`. In AequilibraE the daily
 capacity is one extra graph column named in `set_capacity_field()`; the network itself is not
 changed. Like the time-of-day notebook it needs the exports and `data/road_model/`. The map goes
-to `outputs/weekday_maps/`.
+to `outputs/weekday_maps/`, and the day's matrix to `outputs/weekday_exports/` as OMX and as
+gzipped CSV pairs.
 
 ## A weekend day — `notebooks/weekend_gravity_demo.ipynb`
 
@@ -116,7 +117,8 @@ rates per m² of floor area, so shops and the historic centre pull harder, workp
 less, homes more. It uses AequilibraE's `GravityApplication` on the zones in `zones.gpkg`, solves
 `beta` as the road model does, then keeps productions and `beta` and changes only the rates. It
 needs `zones.gpkg`, `assumptions.csv` and `data/road_model/`, not the O-D matrix. The map goes to
-`outputs/weekend_gravity_maps/`.
+`outputs/weekend_gravity_maps/`, and the day's matrix to `outputs/weekend_gravity_exports/` as OMX
+and as gzipped CSV pairs.
 
 ## Reading the maps
 
