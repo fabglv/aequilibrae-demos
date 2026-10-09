@@ -16,8 +16,7 @@ outputs/*
 
 # The weekday and weekend-day matrices, tracked for the same reason: they come from
 # data/road_model/, which a clone does not have.
-!outputs/weekday_exports/
-!outputs/weekend_gravity_exports/
+!outputs/weekday_weekend_exports/
 
 # Jupyter
 .ipynb_checkpoints/
