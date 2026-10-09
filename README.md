@@ -37,6 +37,8 @@ jupyter lab notebooks/quito_scenarios_demo.ipynb        # road
 jupyter lab notebooks/quito_public_transit_demo.ipynb   # transit
 jupyter lab notebooks/TAZ_OD_demo.ipynb                 # zones and O-D matrix
 jupyter lab notebooks/time_of_day_demo.ipynb            # four hours of the day
+jupyter lab notebooks/weekday_demo.ipynb                # a weekday, one assignment
+jupyter lab notebooks/weekend_gravity_demo.ipynb        # a weekend day, one assignment
 ```
 
 Run the cells in order — a few minutes each, most of it the download in cell A2.
@@ -82,10 +84,11 @@ hold the network and the zones but none of the results.
 Four one-hour assignments — morning peak, midday, evening peak, night — on the same network and
 zones. The road model assigns the morning peak alone.
 
-**It needs no `data/gov_data/`.** It reads the committed exports listed above plus
-`data/road_model/`, so a clone can run it: about seven minutes, most of it the four assignments.
-The morning peak reproduces the road model's result exactly, which is the check that the exports
-carry what they claim.
+It reads the committed exports listed above plus `data/road_model/`, which is not committed: it
+is written by a run of `TAZ_OD_demo.ipynb`, so that notebook, and the `data/gov_data/` it needs,
+has to have run first. About seven minutes, most of it the four assignments. The morning peak
+reproduces the road model's result exactly, which is the check that the exports carry what they
+claim.
 
 Because productions come from population and attractions from floor area, the matrix already runs
 one way — home to activity. So an hour is a transform of it plus a scale rather than a second
@@ -95,6 +98,25 @@ survey to set the direction split. The notebook says so, and lists what it canno
 
 Each hour's link flows are saved to its own table in the working model's results database, and
 `outputs/time_of_day_maps/` gets a switcher across all four plus one detailed map per hour.
+
+## A weekday — `notebooks/weekday_demo.ipynb`
+
+A whole weekday as one O-D matrix, assigned once. The matrix is the morning peak and its reverse,
+averaged and scaled to the day's traffic: symmetric, because every trip out has a trip home. It is
+assigned against capacity multiplied by `F = 1 / busiest-hour share`. In AequilibraE the daily
+capacity is one extra graph column named in `set_capacity_field()`; the network itself is not
+changed. Like the time-of-day notebook it needs the exports and `data/road_model/`. The map goes
+to `outputs/weekday_maps/`.
+
+## A weekend day — `notebooks/weekend_gravity_demo.ipynb`
+
+A weekend day (the average of a Saturday and a Sunday) as one O-D matrix, assigned once in the same
+way. Its trips go to weekend destinations: the gravity model runs again with weekend attraction
+rates per m² of floor area, so shops and the historic centre pull harder, workplaces and schools
+less, homes more. It uses AequilibraE's `GravityApplication` on the zones in `zones.gpkg`, solves
+`beta` as the road model does, then keeps productions and `beta` and changes only the rates. It
+needs `zones.gpkg`, `assumptions.csv` and `data/road_model/`, not the O-D matrix. The map goes to
+`outputs/weekend_gravity_maps/`.
 
 ## Reading the maps
 
